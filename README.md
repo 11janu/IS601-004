@@ -1,3 +1,3 @@
-# IS601-004
-Jahnavi 
-I have done my graduation as a computer science engineer in India. I'm pursuing my masters for gobal exposure.
+IS601-004
+Jahnavi
+I have completed my graduation in computer science engineering in India.I'm pursuing masters for global exposure
