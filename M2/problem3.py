@@ -9,6 +9,11 @@ def process_array(num, arr):
     print(arr)
     print("\nPositive Output:\n")
     # TODO add new code here to print the desired result
+    for number in arr:
+        if type(number) is str:
+            number = int(number)
+        number = abs(number)
+        print(number, end=" ")
 
 
 print("Problem 3")
