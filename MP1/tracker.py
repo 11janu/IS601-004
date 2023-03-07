@@ -54,16 +54,8 @@ def list_tasks(_tasks):
 def add_task(name: str, description: str, due: str):
     """ Copies the TASK_TEMPLATE and fills in the passed in data then adds the task to the tasks list """
     task = TASK_TEMPLATE.copy() # don't delete this
-    # update lastActivity with the current datetime value
+    # include task,last activity date and time()
     task['lastActivity'] = datetime.now()
-    if name== "":
-        print("Task add rejected : Please enter a name for the task")
-    if description == "":
-        print("Task add rejected : Please enter a description for the task")
-    if due == "":
-        print("Task add rejected : Please enter a due date for the task")
-    if name== "" or description == "" or due == "":
-        return
     # set the name, description, and due date (all must be provided)
     # due date must match one of the formats mentioned in str_to_datetime()
     try:
@@ -80,14 +72,8 @@ def add_task(name: str, description: str, due: str):
     # make sure save() is still called last in this function
     save()
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid:Smr9, date:02/16/2023
+    # My ucid:js2679, date:02/23/23
     # Solution Summary
-    # Took a copy of TASK_TEMPLATE and stored it into variable named task
-    # updated lastActivity with current datetime using datetime module.
-    # assigned due,name and description of the task with corresponding parameters in add_task() function.
-    # added try except block to avoid exceptions.
-    #  Added a print statement to aknowledge the addition of task.
-    # Finally used save() function
 
 def process_update(index):
     """ extracted the user input prompts to get task data then passes it to update_task() """
@@ -128,7 +114,7 @@ def process_update(index):
         print("Task not updated as no new data was provided.")
     
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid:Smr9, date:02/16/2023
+    # My ucid:js2679, date:02/23/23
     # Solution Summary
     # Accessed the task by indexing.I have accesed the existing property of each TODos from the task and shown them by using string formatting.
 
@@ -160,12 +146,8 @@ def update_task(index: int, name: str, description:str, due: str):
     # make sure save() is still called last in this function
     save()
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My UCID is Smr9up[] and the date is 02/16/2023.
+    # My UCID is js2679 and the date is 02/23/23
     # Solution Summary
-    # Found the task by index  and handled index out of bounds with try except block .Printing message "Invalid index, task not updated" if index out of bounds
-    # UPdated the incoming task if only data is provied and if data not provided I added if statement and used the original task property value.
-    # updated lastActivity with current datetime using datetime module and printing a message if task is completed otherwise printing "Task not updated as no new data was provided.".
-    
 
     save()
 
@@ -188,13 +170,8 @@ def mark_done(index):
     # make sure save() is still called last in this function
     save()
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid:Smr9, date:02/17/2023
+    # My ucid:js2679, date:02/23/23
     # Solution Summary:
-    # We found the task by index.
-    # Considered index out of range scenarios, printed appropriate message when an invalid index was given.
-    # Checked whether the task is already marked as done or not, and marked it as done with the current datetime.
-    # Printed an appropriate message for each case.
-    # Finally, saved the tasks into the file using the save() function.
 
 def view_task(index):
     """ View more info about a specific task fetch by index """
@@ -213,13 +190,8 @@ def view_task(index):
     print(f"Completed: {'Yes' if task['done'] else 'No'}")
     print(f"Last Activity: {task['lastActivity']}")
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid: Smr9, date: 02/19/2023
+    # My ucid:js2679 , date: 02/23/23
     # Solution Summary:
-    # The function takes an index parameter to get the task from tasks list.
-    # It uses try-except block to handle out of bounds scenarios and print appropriate message for invalid index.
-    # It then prints the details of the found task using f-string and corresponding keys of the dictionary 'task'.
-
-
 
 
 def delete_task(index):
@@ -242,12 +214,8 @@ def get_incomplete_tasks():
     _tasks = [task for task in tasks if not task['done']]
     list_tasks(_tasks)
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid: smr9, date: 02/19/2023
+    # My ucid: js2679, date: 02/23/23
     # Solution Summary:
-    # The function first creates a list of incomplete tasks by using a list comprehension to filter out tasks that are marked as done. 
-    # Then, the function passes the list of incomplete tasks to the list_tasks() function, which prints out the tasks in a formatted manner. 
-    # Finally, the function returns the list of incomplete tasks.
-
 def get_overdue_tasks():
     """ prints a list of tasks that are over due completion (not done and expired) """
     # generate a list of tasks where the due date is older than now and that are not complete
@@ -263,13 +231,8 @@ def get_overdue_tasks():
     # pass that list into list_tasks()
     list_tasks(_tasks)
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # My ucid:smr9, date:02/19/2023 
+    # My ucid:js2679, date:02/23/23
     # Solution Summary:
-    # In get_overdue_tasks() function, created an empty list named overdue_tasks to hold overdue tasks. 
-    # Obtained the current datetime using datetime module. Using a for loop, looped through all the tasks and checked if the task is incomplete and has a due date. 
-    # If the task is incomplete and has a due date then it is converted to datetime object using str_to_datetime() function. 
-    # Then, checked if the task is overdue by comparing current datetime and the due date using if statement. 
-    # If the task is overdue then the task is added to the overdue_tasks list. Finally, called list_tasks() function and passed overdue_tasks list as argument.
     
 
 def get_time_remaining(index):
@@ -300,12 +263,9 @@ def get_time_remaining(index):
     # display the remaining time via print in a clear format showing days, hours, minutes, seconds
     print(f"Time remaining for {task['name']}: {time_str}")
     # include your ucid and date as a comment of when you implemented this, briefly summarize the solution
-    # UCID: smr9, Date: 02/19/2023
+    # UCID:js2679 , Date:02/23/23
     # Solution Summary
-    # This function takes an index and gets the task with the corresponding index.
-    # It first checks if the index is valid, and prints out an error message if not.
-    # It then checks if the task has a due date and prints an error message if it does not.
-    # Finally, it calculates the time difference between the due date and now, and formats and prints the remaining or overdue time accordingly.
+
 
 # no changes needed below this line
 
