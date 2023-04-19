@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block title %}Company Directory{% endblock %}
+{% block content %}
+{% from "country_state_selector.html" import country_state_selector %}
+{% from "sort_filter.html" import sort_filter %}
+<div class="container-fluid">
+    <div class="h1 text-center">Company Directory</div>
+    <form method="GET">
+        <div class="row">
+            <div class="col">
+                <input id="name" class="form-control" placeholder="name" name="name" type="text" value="">
+            </div>
+            {{country_state_selector(layout="horizontal")}}
+            {{sort_filter(cols=[("name", "name"), ("address", "address"), ("city", "city"), ("country", "country"), ("state", "state"), ("zip", "zip"), ("Website", "website"), ("employees","employees")])}}
+            <div class="col">
+                <input id="limit" class="form-control" placeholder="limit" name="limit" type="number" value="10">
+            </div>
+            <div class="col">
+                <input type="submit" class="btn btn-primary" value="Filter" />
+            </div>
+            <div class="col">
+                <a href="?" class="btn btn-secondary">Reset</a>
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table">
+            {% if rows and rows|length > 0 %}
+            <thead>
+                <tr class="text-capitalize">
+                    {% for col in allowed_columns %}
+                    <th>{{ col[1] }}</th>
+                    {% endfor %}
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    {% for col in allowed_columns %}
+                    {% if col[0] == 'website' %}
+                    <td>
+                        <a href="{{ row['website'] }}">website</a>
+                    </td>
+                    {% else %}
+                    <td>{{ row[col[0]] }}</td>
+                    {% endif %}
+                    {% endfor %}
+                    <td>
+                        <a href="/company/edit?id={{ row['id'] }}">Edit</a>
+                        <a href="/company/delete?id={{ row['id'] }}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+            {% else %}
+            <tbody>
+                <tr>
+                    <td colspan="100%">No results to show</td>
+                </tr>
+            </tbody>
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock %}
